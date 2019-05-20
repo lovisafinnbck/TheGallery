@@ -19,7 +19,36 @@ namespace TheGallery.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string sortOrder)
+        {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
+            var products = from p in _context.Product
+                           select p;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    products = products.OrderByDescending(p => p.Name).Include(a => a.Artist).Include(c => c.Category);
+                    break;
+                case "Price":
+                    products = products.OrderBy(p => p.Price).Include(a => a.Artist).Include(c => c.Category);
+                    break;
+                //case "date_desc":
+                    //students = students.OrderByDescending(s => s.EnrollmentDate);
+                    //break;
+                default:
+                    products = products.OrderBy(p => p.Artist).Include(a => a.Artist).Include(c => c.Category);
+                    break;
+            }
+            
+            return View(await products.AsNoTracking().ToListAsync());
+            /*
+            var theGalleryContext = _context.Product.Include(p => p.Artist).Include(p => p.Category);
+            return View(await theGalleryContext.ToListAsync());
+            */
+        }
+
+        public async Task<IActionResult> Search(string searchString)
         {
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -31,8 +60,6 @@ namespace TheGallery.Controllers
                 var TempContext = _context.Product.Include(p => p.Artist).Include(p => p.Category);
                 return View(TempContext.ToList());
             }
-            //var theGalleryContext = _context.Product.Include(p => p.Artist).Include(p => p.Category);
-            //return View(await theGalleryContext.ToListAsync());
         }
 
         // GET: Products/Details/5

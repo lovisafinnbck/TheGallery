@@ -138,3 +138,4 @@ C:\Users\Dator 8\Desktop\TheGallery\TheGallery\obj\Debug\netcoreapp2.1\TheGaller
 C:\Users\Dator 8\Desktop\TheGallery\TheGallery\obj\Debug\netcoreapp2.1\TheGallery.dll
 C:\Users\Dator 8\Desktop\TheGallery\TheGallery\obj\Debug\netcoreapp2.1\TheGallery.pdb
 C:\Users\Dator 8\Desktop\TheGallery\TheGallery\obj\Debug\netcoreapp2.1\TheGallery.csproj.CopyComplete
+C:\Users\Dator 8\Desktop\TheGallery\TheGallery\obj\Debug\netcoreapp2.1\Razor\Views\Products\Search.g.cshtml.cs
