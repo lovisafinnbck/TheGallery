@@ -19,9 +19,16 @@ namespace TheGallery.Models
         [Required]
         [StringLength(30, MinimumLength =3)]
         public string Name { get; set; }
-        
+        [Required]
+        public string ImageURL { get; set; }
         public string Information { get; set; }
 
         public virtual List<CartItem> CartItems { get; set; }
+
+        public int ArtistId { get; set; }
+        public virtual Artist Artist { get; set; }
+
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +21,8 @@ namespace TheGallery.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Product.ToListAsync());
+            var theGalleryContext = _context.Product.Include(p => p.Artist).Include(p => p.Category);
+            return View(await theGalleryContext.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -34,6 +34,8 @@ namespace TheGallery.Controllers
             }
 
             var product = await _context.Product
+                .Include(p => p.Artist)
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -44,9 +46,10 @@ namespace TheGallery.Controllers
         }
 
         // GET: Products/Create
-        [Authorize]
         public IActionResult Create()
         {
+            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Country");
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name");
             return View();
         }
 
@@ -55,8 +58,7 @@ namespace TheGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public async Task<IActionResult> Create([Bind("Id,Price,Click,Quantity,Name,Information")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Price,Click,Quantity,Name,ImageURL,Information,ArtistId,CategoryId")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -64,11 +66,12 @@ namespace TheGallery.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Country", product.ArtistId);
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", product.CategoryId);
             return View(product);
         }
 
         // GET: Products/Edit/5
-        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,6 +84,8 @@ namespace TheGallery.Controllers
             {
                 return NotFound();
             }
+            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Country", product.ArtistId);
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -89,8 +94,7 @@ namespace TheGallery.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Price,Click,Quantity,Name,Information")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Price,Click,Quantity,Name,ImageURL,Information,ArtistId,CategoryId")] Product product)
         {
             if (id != product.Id)
             {
@@ -117,11 +121,12 @@ namespace TheGallery.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Country", product.ArtistId);
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", product.CategoryId);
             return View(product);
         }
 
         // GET: Products/Delete/5
-        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,6 +135,8 @@ namespace TheGallery.Controllers
             }
 
             var product = await _context.Product
+                .Include(p => p.Artist)
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -142,7 +149,6 @@ namespace TheGallery.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _context.Product.FindAsync(id);

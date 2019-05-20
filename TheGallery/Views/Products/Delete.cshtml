@@ -36,10 +36,28 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImageURL)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Information)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Information)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Artist)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Artist.Country)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
         </dd>
     </dl>
     
