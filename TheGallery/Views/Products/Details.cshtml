@@ -39,6 +39,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ImageURL)
+            @{
+                var imgURL = Model.ImageURL;
+                System.Diagnostics.Debug.WriteLine("Image name: " + imgURL);
+            }
+            <br />
+            <img src="@imgURL">
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Information)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace TheGallery.Models
         public string Name { get; set; }
         [Required]
         public string ImageURL { get; set; }
+
         public string Information { get; set; }
 
         public virtual List<CartItem> CartItems { get; set; }
