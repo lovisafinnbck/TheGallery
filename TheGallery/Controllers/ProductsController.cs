@@ -19,10 +19,20 @@ namespace TheGallery.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var theGalleryContext = _context.Product.Include(p => p.Artist).Include(p => p.Category);
-            return View(await theGalleryContext.ToListAsync());
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var products = _context.Product.Where(s => s.Name.Contains(searchString)).Include(a => a.Artist).Include(c => c.Category);
+                return View(products);
+            }
+            else
+            {
+                var TempContext = _context.Product.Include(p => p.Artist).Include(p => p.Category);
+                return View(TempContext.ToList());
+            }
+            //var theGalleryContext = _context.Product.Include(p => p.Artist).Include(p => p.Category);
+            //return View(await theGalleryContext.ToListAsync());
         }
 
         // GET: Products/Details/5
