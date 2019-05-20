@@ -23,6 +23,8 @@ namespace TheGallery.Controllers
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewData["ArtistSortParm"] = String.IsNullOrEmpty(sortOrder) ? "artist_desc" : "";
+            ViewData["QuantitySortParm"] = sortOrder == "Quantity" ? "quantity_desc" : "Quantity";
             var products = from p in _context.Product
                            select p;
             switch (sortOrder)
@@ -33,11 +35,14 @@ namespace TheGallery.Controllers
                 case "Price":
                     products = products.OrderBy(p => p.Price).Include(a => a.Artist).Include(c => c.Category);
                     break;
-                //case "date_desc":
-                    //students = students.OrderByDescending(s => s.EnrollmentDate);
-                    //break;
+                case "artist_desc":
+                    products = products.OrderByDescending(p => p.Artist).Include(a => a.Artist).Include(c => c.Category);
+                    break;
+                case "Quantity":
+                    products = products.OrderByDescending(p => p.Quantity).Include(a => a.Artist).Include(c => c.Category);
+                    break;
                 default:
-                    products = products.OrderBy(p => p.Artist).Include(a => a.Artist).Include(c => c.Category);
+                    products = products.OrderBy(p => p.Name).Include(a => a.Artist).Include(c => c.Category);
                     break;
             }
             

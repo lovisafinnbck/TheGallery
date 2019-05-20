@@ -26,7 +26,7 @@
                         @Html.DisplayNameFor(model => model.Click)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Quantity)
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["QuantitySortParm"]">@Html.DisplayNameFor(model => model.Quantity)</a>
                     </th>
                     <th>
                         <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a>
@@ -38,7 +38,7 @@
                         @Html.DisplayNameFor(model => model.Information)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Artist)
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["ArtistSortParm"]">@Html.DisplayNameFor(model => model.Artist)</a>
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Category)
