@@ -12538,11 +12538,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dator 8\\source\\repos\\TheGallery\\TheGallery\\TheGallery.csproj",
+      "projectUniqueName": "C:\\Users\\Dator 8\\Desktop\\TheGallery\\TheGallery\\TheGallery.csproj",
       "projectName": "TheGallery",
-      "projectPath": "C:\\Users\\Dator 8\\source\\repos\\TheGallery\\TheGallery\\TheGallery.csproj",
+      "projectPath": "C:\\Users\\Dator 8\\Desktop\\TheGallery\\TheGallery\\TheGallery.csproj",
       "packagesPath": "C:\\Users\\Dator 8\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dator 8\\source\\repos\\TheGallery\\TheGallery\\obj\\",
+      "outputPath": "C:\\Users\\Dator 8\\Desktop\\TheGallery\\TheGallery\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
