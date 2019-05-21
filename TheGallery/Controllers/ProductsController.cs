@@ -90,7 +90,7 @@ namespace TheGallery.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Country");
+            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Name");
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name");
             return View();
         }
@@ -108,7 +108,7 @@ namespace TheGallery.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Country", product.ArtistId);
+            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Name", product.ArtistId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", product.CategoryId);
             return View(product);
         }
@@ -126,7 +126,7 @@ namespace TheGallery.Controllers
             {
                 return NotFound();
             }
-            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Country", product.ArtistId);
+            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Name", product.ArtistId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", product.CategoryId);
             return View(product);
         }
@@ -163,7 +163,7 @@ namespace TheGallery.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Country", product.ArtistId);
+            ViewData["ArtistId"] = new SelectList(_context.Artist, "Id", "Name", product.ArtistId);
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", product.CategoryId);
             return View(product);
         }
