@@ -27,5 +27,16 @@ namespace TheGallery.Data
                 }
             }
         }
+
+        public static void SeedRoles(RoleManager<IdentityRole> roleManager)
+        {
+            if (!roleManager.RoleExistsAsync("Admins").Result)
+            {
+                IdentityRole role = new IdentityRole();
+                role.Name = "Admin";
+                IdentityResult roleResult = roleManager.
+                CreateAsync(role).Result;
+            }
+        }
     }
 }
