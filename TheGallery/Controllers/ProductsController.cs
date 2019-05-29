@@ -26,6 +26,7 @@ namespace TheGallery.Controllers
             ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
             ViewData["ArtistSortParm"] = String.IsNullOrEmpty(sortOrder) ? "artist_desc" : "";
             ViewData["QuantitySortParm"] = sortOrder == "Quantity" ? "quantity_desc" : "Quantity";
+            ViewData["ClickSortParm"] = sortOrder == "Click" ? "click_desc" : "Click";
             var products = from p in _context.Product
                            select p;
             switch (sortOrder)
@@ -41,6 +42,9 @@ namespace TheGallery.Controllers
                     break;
                 case "Quantity":
                     products = products.OrderByDescending(p => p.Quantity).Include(a => a.Artist).Include(c => c.Category);
+                    break;
+                case "Click":
+                    products = products.OrderByDescending(p => p.Click).Include(a => a.Artist).Include(c => c.Category);
                     break;
                 default:
                     products = products.OrderBy(p => p.Name).Include(a => a.Artist).Include(c => c.Category);
@@ -83,6 +87,27 @@ namespace TheGallery.Controllers
             if (product == null)
             {
                 return NotFound();
+            } 
+            else
+            {
+                try
+                {
+                    // increase click when enter details and update database
+                    product.Click = product.Click + 1;
+                    _context.Update(product);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProductExists(product.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
             }
 
             return View(product);
