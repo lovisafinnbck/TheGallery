@@ -24,7 +24,6 @@ input[type=text], select {
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
@@ -40,15 +39,15 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
     border-radius: 12px;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     cursor: pointer;
 }
 
-    input[type=submit]:hover {
-        background-color: whitesmoke;
-        color: black;
-    }
+input[type=submit]:hover {
+    background-color: whitesmoke;
+    color: black;
+}
 
 input[type=text]:hover {
     border:double;

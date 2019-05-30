@@ -236,7 +236,7 @@ namespace TheGallery.Controllers
             return _context.Product.Any(e => e.Id == id);
         }
 
-        public JsonResult Search2(string searchString)
+        public JsonResult GetSuggestion(string searchString)
         {
             var products = _context.Product.Where(s => s.Name.Contains(searchString));
             
