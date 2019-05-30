@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<TheGallery.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
 }
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
@@ -10,23 +12,23 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <center><img src="~/images/thegallery.png" alt="ASP.NET" class="img-responsive"/></center>
+            <center><img src="~/images/thegallery.png" alt="ASP.NET" class="img-responsive" /></center>
             <div class="carousel-caption" role="option">
                 <p style="color: black;">
-                 Click on the Product tab to browse through the gallery!
+                    Click on the Product tab to browse through the gallery!
                 </p>
             </div>
         </div>
         <div class="item">
-            <center><img src="~/images/thegallery2.jpg" alt="Visual Studio" class="img-responsive"/></center>
+            <center><img src="~/images/thegallery2.jpg" alt="Visual Studio" class="img-responsive" /></center>
             <div class="carousel-caption" role="option">
                 <p>
-                    This website contains the most amazing art! much wow! 
+                    This website contains the most amazing art! much wow!
                 </p>
             </div>
         </div>
         <div class="item">
-            <center><img src="~/images/thegallery3.jpg" alt="Microsoft Azure" class="img-responsive"/></center>
+            <center><img src="~/images/thegallery3.jpg" alt="Microsoft Azure" class="img-responsive" /></center>
             <div class="carousel-caption" role="option">
                 <p>
                     LOOK AT ALL THIS ART! ART FOR EVERYONE!
@@ -43,5 +45,51 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+
+
+
+
+<div class="container">
+    <div class="b1">
+        <center><h2>Welcome to The Gallery!</h2></center>
+        <p>Browse our collection of art by clicking on the products tab. </p>
+        <p>We have art in many different categories from many different artists.</p>
+        <p>Check them out and place an order.</p>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="/Products">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Leonhard_Euler_by_Handmann.png/220px-Leonhard_Euler_by_Handmann.png " alt="Lights" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="/Products">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" alt="Nature" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="/Products">
+                    <img src="https://www.edvardmunch.org/images/paintings/the-scream.jpg" alt="Fjords" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
