@@ -16,7 +16,8 @@ namespace TheGallery.Data
                 IdentityUser user = new IdentityUser
                 {
                     UserName = "atest0953@gmail.com",
-                    Email = "atest0953@gmail.com"
+                    Email = "atest0953@gmail.com",
+                    EmailConfirmed = true
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "!Admin123").Result;

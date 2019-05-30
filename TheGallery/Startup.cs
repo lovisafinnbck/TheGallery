@@ -13,6 +13,8 @@ using TheGallery.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TheGallery.Models;
+using TheGallery.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace TheGallery
 {
@@ -40,11 +42,18 @@ namespace TheGallery
                     Configuration.GetConnectionString("DefaultConnection")));
             
             // AddDefaultIdentity is bugged when handling role authorization, AddIdentity works.
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>(config =>
+            {
+                config.SignIn.RequireConfirmedEmail = true;
+            })
                 .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            // Configure Email confirmation in Identity
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
