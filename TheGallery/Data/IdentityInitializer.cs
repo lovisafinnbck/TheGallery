@@ -11,12 +11,12 @@ namespace TheGallery.Data
         // add admin account if it doesn't exist
         public static void SeedAdminUser(UserManager<IdentityUser> userManager)
         {
-            if (userManager.FindByEmailAsync("atest0953@gmail.com").Result == null)
+            if (userManager.FindByEmailAsync("admin@admin.se").Result == null)
             {
                 IdentityUser user = new IdentityUser
                 {
-                    UserName = "atest0953@gmail.com",
-                    Email = "atest0953@gmail.com",
+                    UserName = "admin@admin.se",
+                    Email = "admin@admin.se",
                     EmailConfirmed = true
                 };
 
@@ -28,7 +28,7 @@ namespace TheGallery.Data
                 }
             }
         }
-
+        // Add needed roles here
         public static void SeedRoles(RoleManager<IdentityRole> roleManager)
         {
             if (!roleManager.RoleExistsAsync("Admins").Result)
