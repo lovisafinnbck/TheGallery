@@ -113,7 +113,8 @@
                 else
                 {
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-controller="usercart" asp-action="addtocart" asp-route-id="@item.Id">Add To Cart</a>
                     </td>
                 }
 
